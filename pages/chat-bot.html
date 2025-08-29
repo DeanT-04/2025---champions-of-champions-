@@ -9,25 +9,25 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <style type="text/tailwindcss">
 :root {
---sidebar-bg: #252525;
---main-bg: #1C1C1C;
+--sidebar-bg: #8AA89A;
+--main-bg: #EAF2E9;
 --right-panel-bg: #F9FAF9;
 --primary-button-bg: #58B7A7;
 --secondary-button-bg: #4A6A5C;
 --white: #FFFFFF;
 --black: #000000;
---text-secondary-color: #E0E0E0;
+--text-secondary-color: #333333;
 --chat-bot-bg: #D1E7E3;
 --user-message-bg: #58B7A7;
 --bot-message-bg: #E0E0E0;
 --input-bg: #303134;
 --input-text: #E0E0E0;
---button-hover: rgba(255, 255, 255, 0.1);
+--button-hover: rgba(88, 183, 167, 0.1);
 }
 body {
 font-family: 'Arial', 'Helvetica', sans-serif;
 background-color: var(--main-bg);
-color: var(--text-secondary-color);
+color: var(--black);
 }
 .sidebar {
 background-color: var(--sidebar-bg);
@@ -214,7 +214,7 @@ opacity: 0.7;
 .input-container {
 background-color: transparent;
 margin-top: 20px;
-border-top: none;
+border-top: 1px solid rgba(0, 0, 0, 0.07);
 padding-top: 15px;
 }
 
@@ -298,7 +298,7 @@ display: none;
 </div>
 </aside>
 <main class="main-content flex-1 p-8">
-<h2 class="title text-white mb-6 flex justify-between items-center">
+<h2 class="title text-primary mb-6 flex justify-between items-center">
 <span>HEALTH CHAT BOT</span>
 <div class="flex space-x-4">
 <button class="primary-button py-2 px-4 rounded-full flex items-center justify-center body-text font-bold hover:opacity-90 transition-opacity">
@@ -311,7 +311,7 @@ CONVERSATION HISTORY
 </button>
 </div>
 </h2>
-<div class="h-[calc(100vh-120px)] overflow-hidden bg-[#1C1C1C]">
+<div class="h-[calc(100vh-120px)] overflow-hidden">
 <div class="chat-container">
 <div class="chat-messages">
 <div class="message message-bot">
