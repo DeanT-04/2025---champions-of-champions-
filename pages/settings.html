@@ -25,8 +25,9 @@ font-family: 'Arial', 'Helvetica', sans-serif;
 background-color: var(--main-bg);
 }
 .sidebar {
-background-color: var(--sidebar-bg);
-color: var(--white);
+  background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .main-content {
 background-color: var(--main-bg);
@@ -83,8 +84,8 @@ border-bottom: none;
 .toggle-switch {
 position: relative;
 display: inline-block;
-width: 50px;
-height: 24px;
+width: 42px;
+height: 21px;
 }
 .toggle-switch input {
 opacity: 0;
@@ -105,10 +106,10 @@ border-radius: 24px;
 .toggle-slider:before {
 position: absolute;
 content: "";
-height: 16px;
-width: 16px;
-left: 4px;
-bottom: 4px;
+height: 14px;
+width: 14px;
+left: 3px;
+bottom: 3px;
 background-color: white;
 transition: .4s;
 border-radius: 50%;
@@ -117,22 +118,22 @@ input:checked + .toggle-slider {
 background-color: var(--primary-button-bg);
 }
 input:checked + .toggle-slider:before {
-transform: translateX(26px);
+transform: translateX(22px);
 }
 
 /* Bento Box/Grid Styles */
 .bento-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
 }
 
 .bento-card {
   background-color: white;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  padding: 24px;
+  padding: 16px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -153,7 +154,7 @@ transform: translateX(26px);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
+  padding: 8px 0;
   border-bottom: 1px solid #eee;
 }
 
@@ -176,6 +177,25 @@ transform: translateX(26px);
   .bento-card.wide {
     grid-column: span 1;
   }
+}
+
+@media (min-width: 1280px) {
+  .bento-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+/* Custom scrollbar styling */
+.overflow-y-auto::-webkit-scrollbar {
+  width: 12px;
+}
+.overflow-y-auto::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+.overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-bg);
+  border-radius: 6px;
+  border: 3px solid white;
 }
 </style>
 </head>
@@ -225,12 +245,14 @@ transform: translateX(26px);
 </nav>
 </div>
 </aside>
-<main class="main-content flex-1 p-8 overflow-auto">
-<h2 class="title text-primary mb-6">SETTINGS</h2>
+<main class="main-content flex-1 p-6 overflow-auto flex flex-col h-screen">
+<div class="flex flex-1 overflow-hidden">
+<div class="flex-1 overflow-y-auto pr-4">
+<h2 class="title text-primary mb-4">SETTINGS</h2>
 <div class="bento-grid">
   <!-- Account Settings Card -->
   <div class="bento-card">
-    <h3 class="heading text-primary mb-4">Account Settings</h3>
+    <h3 class="heading text-primary mb-3">Account Settings</h3>
     <div class="setting-item-flex">
       <span class="body-text">Email Notifications</span>
       <label class="toggle-switch">
@@ -256,7 +278,7 @@ transform: translateX(26px);
 
   <!-- Privacy Settings Card -->
   <div class="bento-card">
-    <h3 class="heading text-primary mb-4">Privacy Settings</h3>
+    <h3 class="heading text-primary mb-3">Privacy Settings</h3>
     <div class="setting-item-flex">
       <span class="body-text">Share data with research</span>
       <label class="toggle-switch">
@@ -275,7 +297,7 @@ transform: translateX(26px);
 
   <!-- Appearance Card -->
   <div class="bento-card">
-    <h3 class="heading text-primary mb-4">Appearance</h3>
+    <h3 class="heading text-primary mb-3">Appearance</h3>
     <div class="setting-item-flex">
       <span class="body-text">Dark Mode</span>
       <label class="toggle-switch">
@@ -285,7 +307,7 @@ transform: translateX(26px);
     </div>
     <div class="setting-item-flex">
       <span class="body-text">Language</span>
-      <select class="form-input w-32">
+      <select class="form-input w-24 text-xs py-1">
         <option>English</option>
         <option>Spanish</option>
         <option>French</option>
@@ -294,9 +316,36 @@ transform: translateX(26px);
     </div>
   </div>
 
+  <!-- Accessibility Card -->
+  <div class="bento-card">
+    <h3 class="heading text-primary mb-3">Accessibility</h3>
+    <div class="setting-item-flex">
+      <span class="body-text">High Contrast</span>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+    <div class="setting-item-flex">
+      <span class="body-text">Text Size</span>
+      <select class="form-input w-20 text-xs py-1">
+        <option>Small</option>
+        <option selected>Medium</option>
+        <option>Large</option>
+      </select>
+    </div>
+    <div class="setting-item-flex">
+      <span class="body-text">Reduced Motion</span>
+      <label class="toggle-switch">
+        <input type="checkbox">
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+  </div>
+
   <!-- Security Card -->
   <div class="bento-card">
-    <h3 class="heading text-primary mb-4">Security</h3>
+    <h3 class="heading text-primary mb-3">Security</h3>
     <div class="setting-item-flex">
       <span class="body-text">Two-Factor Authentication</span>
       <label class="toggle-switch">
@@ -304,24 +353,89 @@ transform: translateX(26px);
         <span class="toggle-slider"></span>
       </label>
     </div>
-    <button class="primary-button py-2 px-6 rounded-lg body-text font-bold shadow hover:opacity-90 transition-opacity mt-4">
-      CHANGE PASSWORD
-    </button>
+    <div class="setting-item-flex">
+      <span class="body-text">Auth Method</span>
+      <select class="form-input w-24 text-xs py-1">
+        <option>SMS</option>
+        <option>Email</option>
+        <option>App</option>
+      </select>
+    </div>
   </div>
 
   <!-- Data Management Card (Wide) -->
-  <div class="bento-card wide">
-    <h3 class="heading text-primary mb-4">Data Management</h3>
-    <div class="button-group">
-      <button class="secondary-button py-2 px-6 rounded-lg body-text font-bold shadow hover:opacity-90 transition-opacity">
-        EXPORT DATA
+  <div class="bento-card">
+    <h3 class="heading text-primary mb-3">Data Management</h3>
+    <div class="grid grid-cols-2 gap-2">
+      <button class="secondary-button py-1.5 px-3 rounded-lg body-text font-bold shadow hover:opacity-90 transition-all text-xs flex items-center justify-center">
+        <span class="material-icons mr-1 text-sm">file_download</span>
+        EXPORT
       </button>
-      <button class="secondary-button py-2 px-6 rounded-lg body-text font-bold shadow hover:opacity-90 transition-opacity">
+      <button class="secondary-button py-1.5 px-3 rounded-lg body-text font-bold shadow hover:opacity-90 transition-all text-xs flex items-center justify-center">
+        <span class="material-icons mr-1 text-sm">backup</span>
+        BACKUP
+      </button>
+      <button class="secondary-button py-1.5 px-3 rounded-lg body-text font-bold shadow hover:opacity-90 transition-all text-xs col-span-2 flex items-center justify-center">
+        <span class="material-icons mr-1 text-sm">delete</span>
         DELETE ACCOUNT
       </button>
     </div>
   </div>
 </div>
+
+<!-- Right Panel -->
+<aside class="right-panel w-64 p-4 bg-white rounded-lg shadow-md ml-4 flex-shrink-0 overflow-y-auto hidden lg:block">
+  <div class="flex-grow">
+    <div class="space-y-3 mb-6">
+      <button class="primary-button w-full py-2.5 px-4 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-all hover:-translate-y-1">
+        <span class="material-icons mr-2 text-sm">save</span>
+        SAVE SETTINGS
+      </button>
+      <button class="primary-button w-full py-2.5 px-4 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-all hover:-translate-y-1">
+        <span class="material-icons mr-2 text-sm">lock</span>
+        CHANGE PASSWORD
+      </button>
+      <button class="secondary-button w-full py-2.5 px-4 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-all hover:-translate-y-1">
+        <span class="material-icons mr-2 text-sm">restore</span>
+        RESET DEFAULT
+      </button>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="mb-6">
+      <h3 class="heading text-primary mb-3 text-sm">Quick Actions</h3>
+      <div class="space-y-2">
+        <button class="w-full text-left p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors flex items-center">
+          <span class="material-icons text-primary mr-2 text-sm">person</span>
+          <span class="body-text text-sm">Edit Profile</span>
+        </button>
+        <button class="w-full text-left p-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors flex items-center">
+          <span class="material-icons text-primary mr-2 text-sm">help</span>
+          <span class="body-text text-sm">Help & Support</span>
+        </button>
+      </div>
+    </div>
+    
+    <!-- App Info Section -->
+    <div class="mt-4">
+      <h3 class="heading text-primary mb-3 text-sm">App Information</h3>
+      <div class="bg-gray-50 p-3 rounded-lg">
+        <div class="flex justify-between items-center mb-2">
+          <span class="body-text text-sm">Version</span>
+          <span class="font-bold text-sm">1.2.5</span>
+        </div>
+        <div class="flex justify-between items-center mb-2">
+          <span class="body-text text-sm">Last Updated</span>
+          <span class="font-bold text-sm">Today</span>
+        </div>
+        <div class="flex justify-between items-center">
+          <span class="body-text text-sm">Storage Used</span>
+          <span class="font-bold text-sm">24 MB</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</aside>
 </main>
 </body>
 </html>
