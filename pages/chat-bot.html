@@ -10,24 +10,24 @@
 <style type="text/tailwindcss">
 :root {
 --sidebar-bg: #8AA89A;
---main-bg: #1C1C1C;
+--main-bg: #EAF2E9;
 --right-panel-bg: #F9FAF9;
 --primary-button-bg: #58B7A7;
 --secondary-button-bg: #4A6A5C;
 --white: #FFFFFF;
 --black: #000000;
---text-secondary-color: #E0E0E0;
---chat-bot-bg: #2A2A2A;
+--text-secondary-color: #333333;
+--chat-bot-bg: #D1E7E3;
 --user-message-bg: #58B7A7;
---bot-message-bg: #363636;
---input-bg: #242424;
---input-text: #E0E0E0;
---button-hover: rgba(255, 255, 255, 0.1);
+--bot-message-bg: #E0E0E0;
+--input-bg: var(--white);
+--input-text: var(--black);
+--button-hover: rgba(88, 183, 167, 0.1);
 }
 body {
 font-family: 'Arial', 'Helvetica', sans-serif;
 background-color: var(--main-bg);
-color: var(--text-secondary-color);
+color: var(--black);
 }
 .sidebar {
 background-color: var(--sidebar-bg);
@@ -100,7 +100,7 @@ border-bottom-right-radius: 4px;
 }
 .bot-message {
 background-color: var(--bot-message-bg);
-color: var(--white);
+color: var(--black);
 border-bottom-left-radius: 4px;
 }
 .chat-input {
@@ -111,7 +111,7 @@ gap: 10px;
 flex: 1;
 padding: 12px 16px;
 border-radius: 24px;
-border: 1px solid #444;
+border: 1px solid #ccc;
 background-color: var(--input-bg);
 color: var(--input-text);
 }
@@ -134,23 +134,22 @@ gap: 10px;
 margin-top: 15px;
 }
 .suggestion-chip {
-background-color: rgba(88, 183, 167, 0.2);
-color: var(--primary-button-bg);
+background-color: var(--primary-button-bg);
+color: var(--white);
 padding: 8px 16px;
 border-radius: 20px;
 font-size: 14px;
 cursor: pointer;
-border: 1px solid var(--primary-button-bg);
 }
 .suggestion-chip:hover {
-background-color: rgba(88, 183, 167, 0.3);
+opacity: 0.9;
 }
 .bot-avatar {
 width: 32px;
 height: 32px;
 margin-right: 12px;
 border-radius: 50%;
-background-color: #777;
+background-color: var(--primary-button-bg);
 display: flex;
 align-items: center;
 justify-content: center;
@@ -173,8 +172,8 @@ display: flex;
 align-items: center;
 margin-left: auto;
 margin-right: auto;
-background-color: #242424;
-color: #888;
+background-color: var(--chat-bot-bg);
+color: var(--text-secondary-color);
 padding: 6px 12px;
 border-radius: 12px;
 margin-bottom: 8px;
@@ -182,14 +181,14 @@ font-size: 12px;
 }
 
 .input-container {
-background-color: #242424;
+background-color: var(--white);
 border-radius: 12px;
 padding: 8px;
 margin-top: 10px;
 }
 </style>
 </head>
-<body class="flex min-h-screen bg-[#1C1C1C]">
+<body class="flex min-h-screen">
 <aside class="sidebar w-64 p-6 flex flex-col justify-between">
 <div>
 <div class="mb-12">
@@ -236,7 +235,7 @@ margin-top: 10px;
 </div>
 </aside>
 <main class="main-content flex-1 p-8">
-<h2 class="title text-[#E0E0E0] mb-6 flex justify-between items-center">
+<h2 class="title text-primary mb-6 flex justify-between items-center">
 <span>HEALTH CHAT BOT</span>
 <div class="flex space-x-4">
 <button class="primary-button py-2 px-3 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-opacity">
@@ -249,11 +248,11 @@ CONVERSATION HISTORY
 </button>
 </div>
 </h2>
-<div class="bg-[#2A2A2A] p-6 rounded-lg shadow-md h-[calc(100vh-120px)]">
+<div class="bg-white p-6 rounded-lg shadow-md h-[calc(100vh-120px)]">
 <div class="chat-container">
 <div class="chat-messages">
 <div class="message message-bot">
-<div class="model-info">
+<div class="model-info" style="background-color: var(--chat-bot-bg);">
 <span>Health Assistant</span>
 </div>
 <div class="message-with-avatar">
