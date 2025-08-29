@@ -108,22 +108,21 @@ position: relative;
 display: flex;
 align-items: center;
 margin-top: 20px;
-background-color: var(--input-bg);
+background-color: var(--main-bg);
 border-radius: 24px;
 padding: 0;
-border: none;
+border: 1px solid #e0e0e0;
 height: 48px;
 width: 100%;
-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .chat-input input {
 flex: 1;
-padding: 0 96px 0 16px;
+padding: 0 140px 0 16px;
 border-radius: 24px;
 border: none;
 outline: none;
 background-color: transparent;
-color: var(--input-text);
+color: var(--black);
 width: 100%;
 height: 100%;
 font-size: 16px;
@@ -136,7 +135,7 @@ box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
 .chat-input button {
 background-color: transparent;
-color: #8ab4f8;
+color: var(--primary-button-bg);
 border: none;
 border-radius: 50%;
 width: 40px;
@@ -152,8 +151,8 @@ transform: translateY(-50%);
 transition: color 0.2s ease;
 }
 
-.chat-input button:hover {
-color: #a1c4fb;
+.chat-input button:hover, .attachment-button:hover, .mic-button:hover {
+color: var(--secondary-button-bg);
 background-color: transparent;
 }
 .suggestion-chips {
@@ -218,9 +217,9 @@ border-top: 1px solid rgba(0, 0, 0, 0.07);
 padding-top: 15px;
 }
 
-.attachment-button {
+.attachment-button, .mic-button {
 background-color: transparent;
-color: #8ab4f8;
+color: var(--primary-button-bg);
 border: none;
 border-radius: 50%;
 width: 40px;
@@ -242,8 +241,8 @@ background-color: transparent;
 }
 
 .chat-input:focus-within {
-border-color: transparent;
-box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
 
 .chat-input::after {
@@ -354,12 +353,15 @@ That sounds concerning. Have you noticed any triggers or patterns? For example, 
 </div>
 <div class="input-container">
 <div class="chat-input">
-<input type="text" placeholder="Ask anything">
-<button class="attachment-button">
+<input type="text" placeholder="Type your message here...">
+<button class="mic-button" style="right: 48px;">
 <span class="material-icons text-[20px]">mic</span>
 </button>
+<button class="attachment-button" style="right: 92px;">
+<span class="material-icons text-[20px]">attach_file</span>
+</button>
 <button>
-<span class="material-icons text-[20px]">search</span>
+<span class="material-icons text-[20px]">send</span>
 </button>
 </div>
 </div>
