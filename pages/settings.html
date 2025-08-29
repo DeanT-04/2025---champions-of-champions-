@@ -9,551 +9,551 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <style type="text/tailwindcss">
 :root {
---sidebar-bg: #8AA89A;
---main-bg: #EAF2E9;
---right-panel-bg: #F9FAF9;
---primary-button-bg: #58B7A7;
---secondary-button-bg: #4A6A5C;
---white: #FFFFFF;
---black: #000000;
---text-secondary-color: #333333;
---input-border-color: #D1D5DB;
---card-bg: rgba(255, 255, 255, 0.8);
+  --sidebar-bg: #8AA89A;
+  --main-bg: #EAF2E9;
+  --right-panel-bg: #F9FAF9;
+  --primary-button-bg: #58B7A7;
+  --secondary-button-bg: #4A6A5C;
+  --white: #FFFFFF;
+  --black: #000000;
+  --text-secondary-color: #333333;
+  --input-border-color: #D1D5DB;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --hover-bg: rgba(88, 183, 167, 0.1);
 }
 body {
-font-family: 'Arial', 'Helvetica', sans-serif;
-background-color: var(--main-bg);
-background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 15%);
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  background-color: var(--main-bg);
+  background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
+                    radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 15%);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 .sidebar {
-background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
-color: var(--white);
-box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 256px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+  position: fixed;
+  overflow-y: auto;
 }
 .main-content {
-background-color: var(--main-bg);
+  background-color: var(--main-bg);
+  margin-left: 256px;
+  height: 100vh;
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+.right-panel {
+  background-color: var(--right-panel-bg);
+  width: 100%;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow-y: auto;
+  flex: 1;
 }
 .primary-button {
-background-color: var(--primary-button-bg);
-color: var(--white);
-transition: all 0.3s ease;
-box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
+  background-color: var(--primary-button-bg);
+  color: var(--white);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
 }
-
 .primary-button:hover {
-background-color: #4aa595;
-transform: translateY(-2px);
-box-shadow: 0 6px 8px rgba(88, 183, 167, 0.3);
+  background-color: #4aa595;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(88, 183, 167, 0.3);
 }
 .secondary-button {
-background-color: var(--secondary-button-bg);
-color: var(--white);
-transition: all 0.3s ease;
-box-shadow: 0 4px 6px rgba(74, 106, 92, 0.2);
+  background-color: var(--secondary-button-bg);
+  color: var(--white);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(74, 106, 92, 0.2);
 }
-
 .secondary-button:hover {
-background-color: #3d5a4d;
-transform: translateY(-2px);
-box-shadow: 0 6px 8px rgba(74, 106, 92, 0.3);
+  background-color: #3d5a4d;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(74, 106, 92, 0.3);
 }
 .text-primary {
-color: var(--black);
+  color: var(--black);
 }
 .text-secondary {
-color: var(--text-secondary-color);
+  color: var(--text-secondary-color);
 }
 .title {
-font-size: 22px;
-font-weight: bold;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
 }
 .heading {
-font-size: 18px;
-font-weight: bold;
-}
-.subheading {
-font-size: 16px;
-font-weight: bold;
-color: var(--text-secondary-color);
+  font-size: 18px;
+  font-weight: 700;
 }
 .body-text {
-font-size: 14px;
+  font-size: 14px;
+  letter-spacing: 0.2px;
 }
 .form-label {
-@apply block text-sm font-medium text-secondary;
+  @apply block text-sm font-medium text-secondary mb-2;
 }
 .form-input {
-@apply mt-1 block w-full rounded-lg border-gray-300 shadow-sm sm:text-sm transition-all;
-border-color: var(--input-border-color);
-padding: 0.75rem 1rem;
-background-color: rgba(255, 255, 255, 0.8);
+  @apply mt-1 block w-full rounded-lg border-gray-300 shadow-sm sm:text-sm transition-all;
+  border-color: var(--input-border-color);
+  padding: 0.75rem 1rem;
+  background-color: rgba(255, 255, 255, 0.8);
 }
-
 .form-input:focus {
-border-color: var(--primary-button-bg);
-box-shadow: 0 0 0 3px rgba(88, 183, 167, 0.2);
-outline: none;
+  border-color: var(--primary-button-bg);
+  box-shadow: 0 0 0 3px rgba(88, 183, 167, 0.2);
+  outline: none;
 }
 .toggle-switch {
-position: relative;
-display: inline-block;
-width: 36px;
-height: 20px;
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
 }
 .toggle-switch input {
-opacity: 0;
-width: 0;
-height: 0;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 .toggle-slider {
-position: absolute;
-cursor: pointer;
-top: 0;
-left: 0;
-right: 0;
-bottom: 0;
-background-color: #ccc;
-transition: .3s;
-border-radius: 20px;
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .3s;
+  border-radius: 20px;
 }
 .toggle-slider:before {
-position: absolute;
-content: "";
-height: 14px;
-width: 14px;
-left: 3px;
-bottom: 3px;
-background-color: white;
-transition: .3s;
-border-radius: 50%;
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
 }
 input:checked + .toggle-slider {
-background-color: var(--primary-button-bg);
+  background-color: var(--primary-button-bg);
 }
 input:checked + .toggle-slider:before {
-transform: translateX(16px);
+  transform: translateX(20px);
 }
-
-/* Settings card styles */
+.nav-item {
+  @apply flex items-center p-3 rounded-xl transition-all duration-200 mb-1;
+}
+.nav-item.active {
+  background-color: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+.nav-item:not(.active):hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  transform: translateX(4px);
+}
 .settings-card {
-background-color: rgba(255, 255, 255, 0.85);
-border-radius: 16px;
-box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 32px;
+  width: 85%;
+  max-width: 800px;
+  margin: 32px auto;
+  max-height: calc(100vh - 64px);
+  overflow-y: auto;
 }
-.settings-column {
-padding: 24px;
+.settings-section {
+  margin-bottom: 32px;
 }
-.settings-column:first-child {
-border-right: 1px solid rgba(238, 238, 238, 0.5);
+.settings-section:last-child {
+  margin-bottom: 0;
 }
-.settings-group {
-margin-bottom: 24px;
-}
-.settings-group:last-child {
-margin-bottom: 0;
+.settings-section-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--black);
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.8);
 }
 .settings-item {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(238, 238, 238, 0.5);
 }
-.settings-divider {
-height: 1px;
-background-color: #eee;
-margin: 8px 0;
+.settings-item:last-child {
+  border-bottom: none;
+}
+.settings-item-content {
+  flex: 1;
+  margin-right: 20px;
+}
+.settings-item-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+.settings-item-description {
+  font-size: 12px;
+  color: var(--text-secondary-color);
+}
+.settings-item-control {
+  flex-shrink: 0;
 }
 .action-button {
-border-radius: 8px;
-padding: 8px 14px;
-font-size: 13px;
-font-weight: 600;
-display: flex;
-align-items: center;
-justify-content: center;
-transition: all 0.3s ease;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: all 0.3s ease;
+  background-color: var(--secondary-button-bg);
+  color: var(--white);
+  border: none;
+  cursor: pointer;
+  width: 110px;
+  height: 36px;
 }
-
 .action-button .material-icons {
-font-size: 16px;
-margin-right: 4px;
+  font-size: 16px;
+  margin-right: 8px;
 }
-
+.action-button:hover {
+  background-color: var(--secondary-button-bg);
+  opacity: 0.9;
+  box-shadow: 0 4px 6px rgba(74, 106, 92, 0.2);
+}
+.delete-button {
+  background-color: #ef4444;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 110px;
+  height: 36px;
+}
+.delete-button .material-icons {
+  font-size: 16px;
+  margin-right: 8px;
+}
+.delete-button:hover {
+  background-color: #dc2626;
+  box-shadow: 0 4px 6px rgba(220, 38, 38, 0.2);
+}
+.save-button {
+  background-color: var(--primary-button-bg);
+  color: var(--white);
+  border: none;
+  border-radius: 12px;
+  padding: 14px 32px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.save-button:hover {
+  background-color: var(--primary-button-bg);
+  opacity: 0.9;
+  box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
+}
 /* Custom scrollbar styling */
-.overflow-y-auto::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 12px;
 }
-.overflow-y-auto::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1);
 }
-.overflow-y-auto::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background-color: var(--sidebar-bg);
   border-radius: 6px;
   border: 3px solid white;
 }
 </style>
 </head>
-<body class="flex min-h-screen">
-<aside class="sidebar w-64 p-6 flex flex-col justify-between">
+<body class="flex">
+<aside class="sidebar">
 <div>
-<div class="mb-12">
-<h1 class="text-2xl font-bold text-white">MyHealth</h1>
+<div class="mb-10 mt-4">
+<h1 class="text-2xl font-bold text-white tracking-tight">MyHealth</h1>
 </div>
-<nav class="space-y-4">
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">person_outline</span>
+<nav class="space-y-1">
+<a class="nav-item" href="profile.html">
+<span class="material-icons mr-3 text-center">person_outline</span>
 <span class="body-text">Profile</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">calendar_today</span>
+<a class="nav-item" href="calendar.html">
+<span class="material-icons mr-3 text-center">calendar_today</span>
 <span class="body-text">Appointments</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">medical_services</span>
+<a class="nav-item" href="doctors.html">
+<span class="material-icons mr-3 text-center">medical_services</span>
 <span class="body-text">Doctors</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">assignment</span>
+<a class="nav-item" href="symptom-note.html">
+<span class="material-icons mr-3 text-center">assignment</span>
 <span class="body-text">Symptom Notes</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">history</span>
+<a class="nav-item" href="note-history.html">
+<span class="material-icons mr-3 text-center">history</span>
 <span class="body-text">Note History</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">chat</span>
+<a class="nav-item" href="chat-bot.html">
+<span class="material-icons mr-3 text-center">chat</span>
 <span class="body-text">Chat Bot</span>
 </a>
 </nav>
 </div>
 <div class="mt-auto">
-<nav class="space-y-2">
-<a class="flex items-center p-3 rounded-lg bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">settings</span>
+<nav class="space-y-1">
+<a class="nav-item active" href="settings.html">
+<span class="material-icons mr-3 text-center">settings</span>
 <span class="body-text">Settings</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">logout</span>
+<a class="nav-item" href="#">
+<span class="material-icons mr-3 text-center">logout</span>
 <span class="body-text">Logout</span>
 </a>
 </nav>
 </div>
 </aside>
-<main class="main-content flex-1 p-6 flex flex-col h-screen overflow-hidden">
-<h2 class="title text-primary mb-4">SETTINGS</h2>
+<main class="main-content">
+<div class="right-panel">
+<div class="settings-card">
+<h2 class="title text-primary mb-8 text-center">Settings</h2>
 
-<div class="settings-card flex-1 overflow-hidden flex flex-col">
-  <!-- Settings Header with Action Buttons -->
-  <div class="flex items-center justify-between p-5 border-b border-gray-200 bg-white/50">
-    <div class="flex items-center space-x-3">
-      <span class="material-icons text-gray-600">settings</span>
-      <span class="heading text-primary">Account Settings</span>
-    </div>
-    <div class="flex space-x-3">
-      <button class="action-button border border-gray-300 hover:bg-gray-50 transition-all">
-        <span class="material-icons">restore</span>
-        Reset
-      </button>
-      <button class="action-button primary-button hover:shadow-lg">
-        <span class="material-icons">save</span>
-        Save
-      </button>
-    </div>
-  </div>
-  
-  <!-- Settings Content Area - Two Column Layout -->
-  <div class="flex flex-1 overflow-hidden">
-    <!-- Left Column -->
-    <div class="settings-column w-1/2 overflow-y-auto">
-      <!-- Account Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Account</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">Email Notifications</span>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">SMS Notifications</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Push Notifications</span>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Notification Frequency</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>Immediate</option>
-            <option>Daily Digest</option>
-            <option>Weekly</option>
-          </select>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Email Address</span>
-          <button class="text-sm text-blue-600 hover:underline">Change</button>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Password</span>
-          <button class="text-sm text-blue-600 hover:underline">Change</button>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Phone Number</span>
-          <button class="text-sm text-blue-600 hover:underline">Change</button>
-        </div>
-      </div>
-      
-      <!-- Security Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Security</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">Two-Factor Authentication</span>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Authentication Method</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>SMS</option>
-            <option>Email</option>
-            <option>Authenticator</option>
-          </select>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Session Timeout</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>15 minutes</option>
-            <option>30 minutes</option>
-            <option>1 hour</option>
-            <option>4 hours</option>
-          </select>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Login History</span>
-          <button class="text-sm text-blue-600 hover:underline">View</button>
-        </div>
-      </div>
-      
-      <!-- Data Management Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Data Management</h3>
-        
-        <div class="grid grid-cols-2 gap-2 mb-2">
-          <button class="secondary-button action-button flex items-center justify-center">
-            <span class="material-icons text-sm mr-1">file_download</span>
-            Export Data
-          </button>
-          <button class="secondary-button action-button flex items-center justify-center">
-            <span class="material-icons text-sm mr-1">backup</span>
-            Backup Data
-          </button>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Storage Used</span>
-          <span class="text-sm text-gray-600">24 MB</span>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Auto Backup</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text text-red-500">Delete Account</span>
-          <button class="text-sm text-red-500 hover:underline">Delete</button>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Right Column -->
-    <div class="settings-column w-1/2 overflow-y-auto">
-      <!-- Privacy Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Privacy</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">Share data with research</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Allow health data access</span>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Share data with doctors</span>
-          <label class="toggle-switch">
-            <input type="checkbox" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Data Sharing Scope</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>Essential Only</option>
-            <option>Standard</option>
-            <option>Complete</option>
-          </select>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Privacy Policy</span>
-          <button class="text-sm text-blue-600 hover:underline">View</button>
-        </div>
-      </div>
-      
-      <!-- Appearance Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Appearance</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">Dark Mode</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Text Size</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>Small</option>
-            <option selected>Medium</option>
-            <option>Large</option>
-          </select>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Language</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>English</option>
-            <option>Spanish</option>
-            <option>French</option>
-            <option>German</option>
-          </select>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Color Scheme</span>
-          <select class="form-input w-28 text-xs py-1.5 px-2">
-            <option>Standard</option>
-            <option>Deuteranopia</option>
-            <option>Protanopia</option>
-            <option>Tritanopia</option>
-            <option>High Contrast</option>
-          </select>
-        </div>
-      </div>
-      
-      <!-- Accessibility Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">Accessibility</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">High Contrast</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Reduced Motion</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Screen Reader Support</span>
-          <label class="toggle-switch">
-            <input type="checkbox">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Keyboard Shortcuts</span>
-          <button class="text-sm text-blue-600 hover:underline">View</button>
-        </div>
-      </div>
-      
-      <!-- About Group -->
-      <div class="settings-group">
-        <h3 class="heading text-primary mb-3">About</h3>
-        
-        <div class="settings-item">
-          <span class="body-text">Version</span>
-          <span class="text-sm text-gray-600">1.2.5</span>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Last Updated</span>
-          <span class="text-sm text-gray-600">Today</span>
-        </div>
-        
-        <div class="settings-divider"></div>
-        
-        <div class="settings-item">
-          <span class="body-text">Help & Support</span>
-          <button class="text-sm text-blue-600 hover:underline">Contact</button>
-        </div>
-        
-        <div class="settings-item">
-          <span class="body-text">Terms of Service</span>
-          <button class="text-sm text-blue-600 hover:underline">View</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- Account Settings Section -->
+<div class="settings-section">
+<h3 class="settings-section-title">Account Settings</h3>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Email Notifications</div>
+<div class="settings-item-description">Receive email updates about your account and appointments</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="email-notifications" checked>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">SMS Notifications</div>
+<div class="settings-item-description">Receive text messages for important updates</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="sms-notifications">
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Password</div>
+<div class="settings-item-description">Change your account password</div>
+</div>
+<div class="settings-item-control">
+<button class="action-button">
+<span class="material-icons text-sm">edit</span>
+<span class="ml-2">Change</span>
+</button>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Two-Factor Authentication</div>
+<div class="settings-item-description">Add an extra layer of security to your account</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="two-factor" checked>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+</div>
+
+<!-- Appearance Settings Section -->
+<div class="settings-section">
+<h3 class="settings-section-title">Appearance</h3>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Dark Mode</div>
+<div class="settings-item-description">Switch to a dark color scheme</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="dark-mode">
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Color Scheme</div>
+<div class="settings-item-description">Choose a color scheme that works best for you</div>
+</div>
+<div class="settings-item-control">
+<select class="form-input" style="width: 180px;">
+<option>Standard</option>
+<option>Deuteranopia</option>
+<option>Protanopia</option>
+<option>Tritanopia</option>
+<option>High Contrast</option>
+</select>
+</div>
+</div>
+</div>
+
+<!-- Privacy Settings Section -->
+<div class="settings-section">
+<h3 class="settings-section-title">Privacy</h3>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Share Data with Doctors</div>
+<div class="settings-item-description">Allow doctors to access your health data</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="doctor-sharing" checked>
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Share with Research</div>
+<div class="settings-item-description">Anonymized data for medical research</div>
+</div>
+<div class="settings-item-control">
+<label class="toggle-switch">
+<input type="checkbox" id="research-sharing">
+<span class="toggle-slider"></span>
+</label>
+</div>
+</div>
+</div>
+
+<!-- Health Settings Section -->
+<div class="settings-section">
+<h3 class="settings-section-title">Health Preferences</h3>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Appointment Reminders</div>
+<div class="settings-item-description">Set how far in advance you want to be reminded</div>
+</div>
+<div class="settings-item-control">
+<select class="form-input" style="width: 180px;">
+<option>1 hour before</option>
+<option selected>24 hours before</option>
+<option>48 hours before</option>
+<option>1 week before</option>
+</select>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Language</div>
+<div class="settings-item-description">Select your preferred language</div>
+</div>
+<div class="settings-item-control">
+<select class="form-input" style="width: 180px;">
+<option selected>English</option>
+<option>Spanish</option>
+<option>French</option>
+<option>German</option>
+</select>
+</div>
+</div>
+</div>
+
+<!-- Data Management Section -->
+<div class="settings-section">
+<h3 class="settings-section-title">Data Management</h3>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Export Data</div>
+<div class="settings-item-description">Download a copy of your health data</div>
+</div>
+<div class="settings-item-control">
+<button class="action-button">
+<span class="material-icons text-sm">file_download</span>
+<span class="ml-2">Export</span>
+</button>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Backup Data</div>
+<div class="settings-item-description">Create a backup of your health information</div>
+</div>
+<div class="settings-item-control">
+<button class="action-button">
+<span class="material-icons text-sm">backup</span>
+<span class="ml-2">Backup</span>
+</button>
+</div>
+</div>
+<div class="settings-item">
+<div class="settings-item-content">
+<div class="settings-item-title">Delete Account</div>
+<div class="settings-item-description">Permanently delete your account and all data</div>
+</div>
+<div class="settings-item-control">
+<button class="delete-button">
+<span class="material-icons text-sm">delete</span>
+<span class="ml-2">Delete</span>
+</button>
+</div>
+</div>
+</div>
+
+<!-- Save Button -->
+<button class="save-button mt-8">
+SAVE CHANGES
+</button>
+</div>
 </div>
 </main>
 </body>
