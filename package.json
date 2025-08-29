@@ -1,0 +1,20 @@
+{
+  "name": "2025---champions-of-champions-",
+  "version": "1.0.0",
+  "description": "![Logo](assets/logo.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DeanT-04/2025---champions-of-champions-.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DeanT-04/2025---champions-of-champions-/issues"
+  },
+  "homepage": "https://github.com/DeanT-04/2025---champions-of-champions-#readme"
+}
