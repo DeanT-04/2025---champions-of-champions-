@@ -198,6 +198,18 @@ padding: 0;
 border: 1px solid #e0e0e0;
 height: 64px; /* Increased height */
 width: 100%;
+    .nav-item {
+      @apply flex items-center p-3 rounded-xl transition-all duration-200 mb-1;
+    }
+    .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-item:not(.active):hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
 transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
@@ -382,41 +394,41 @@ background-color: rgba(74, 106, 92, 0.1);
 <div class="mb-12">
 <h1 class="text-2xl font-bold text-white">MyHealth</h1>
 </div>
-<nav class="space-y-4">
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">person_outline</span>
+<nav class="space-y-1">
+<a class="nav-item" href="profile.html">
+<span class="material-icons mr-3 text-center">person_outline</span>
 <span class="body-text">Profile</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">calendar_today</span>
+<a class="nav-item" href="calendar.html">
+<span class="material-icons mr-3 text-center">calendar_today</span>
 <span class="body-text">Appointments</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">medical_services</span>
+<a class="nav-item" href="doctors.html">
+<span class="material-icons mr-3 text-center">medical_services</span>
 <span class="body-text">Doctors</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">assignment</span>
+<a class="nav-item" href="symptom-note.html">
+<span class="material-icons mr-3 text-center">assignment</span>
 <span class="body-text">Symptom Notes</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">history</span>
+<a class="nav-item" href="note-history.html">
+<span class="material-icons mr-3 text-center">history</span>
 <span class="body-text">Note History</span>
 </a>
-<a class="flex items-center p-3 rounded-lg bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">chat</span>
+<a class="nav-item active" href="chat-bot.html">
+<span class="material-icons mr-3 text-center">chat</span>
 <span class="body-text">Chat Bot</span>
 </a>
 </nav>
 </div>
 <div class="mt-auto">
-<nav class="space-y-2">
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">settings</span>
+<nav class="space-y-1">
+<a class="nav-item" href="settings.html">
+<span class="material-icons mr-3 text-center">settings</span>
 <span class="body-text">Settings</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
-<span class="material-icons mr-4">logout</span>
+<a class="nav-item" href="#">
+<span class="material-icons mr-3 text-center">logout</span>
 <span class="body-text">Logout</span>
 </a>
 </nav>
