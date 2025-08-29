@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medical Application UI</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+  <style type="text/tailwindcss">
+    :root {
+      --sidebar-bg: #8AA89A;
+      --main-bg: #EAF2E9;
+      --right-panel-bg: #F9FAF9;
+      --primary-button-bg: #58B7A7;
+      --secondary-button-bg: #4A6A5C;
+      --white: #FFFFFF;
+      --black: #000000;
+      --text-secondary-color: #333333;
+      --input-border-color: #D1D5DB;
+      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-border: #E5E7EB;
+      --selected-border: #4CAF50;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--main-bg);
+    }
+    .sidebar {
+      background-color: var(--sidebar-bg);
+      color: var(--white);
+    }
+    .main-content {
+      background-color: var(--main-bg);
+    }
+    .right-panel {
+      background-color: var(--right-panel-bg);
+    }
+    .doctor-card {
+      background-color: var(--white);
+      border: 1px solid var(--card-border);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+      height: 288px;
+      width: 100%;
+    }
+    .doctor-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    }
+    .doctor-card.selected {
+      border-color: var(--selected-border);
+      border-width: 2px;
+    }
+    .calendar-icon {
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .calendar-icon:hover {
+      opacity: 1;
+    }
+    .more-info-text {
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .more-info-text:hover {
+      opacity: 1;
+    }
+    .modal-overlay {
+      visibility: hidden;
+      opacity: 0;
+      transition: visibility 0s, opacity 0.3s linear;
+    }
+    .modal-content {
+      transform: scale(0.95);
+      transition: transform 0.3s;
+    }
+    :target .modal-overlay {
+      visibility: visible;
+      opacity: 1;
+    }
+    :target .modal-content {
+      transform: scale(1);
+    }
+    .subtle-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .subtle-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .subtle-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(138, 168, 154, 0.7); /* Subtle green from --sidebar-bg with transparency */
+      border-radius: 3px;
+    }
+    .subtle-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(138, 168, 154, 1); /* Full opacity on hover */
+    }
+  </style>
+</head>
+<body class="flex h-screen">
+  <aside class="sidebar w-64 p-6 flex-col justify-between hidden lg:flex">
+    <div>
+      <div class="mb-12">
+        <h1 class="text-2xl font-bold text-white">MyHealth</h1>
+      </div>
+      <nav class="space-y-4">
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">person_outline</span>
+          <span class="body-text">Profile</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">calendar_today</span>
+          <span class="body-text">Appointments</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">medical_services</span>
+          <span class="body-text">Doctors</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">assignment</span>
+          <span class="body-text">Symptom Notes</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">history</span>
+          <span class="body-text">Note History</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">chat</span>
+          <span class="body-text">Chat Bot</span>
+        </a>
+      </nav>
+    </div>
+    <div class="mt-auto">
+      <nav class="space-y-2">
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">settings</span>
+          <span class="body-text">Settings</span>
+        </a>
+        <a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+          <span class="material-icons mr-4">logout</span>
+          <span class="body-text">Logout</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+  <main class="main-content flex-1">
+    <div class="p-8">
+      <div class="bg-white/80 w-full p-8 rounded-lg shadow-lg">
+        <div>
+          <div class="border-b-2 border-gray-300 pb-4 mb-6">
+            <h2 class="text-xl font-bold text-gray-800">Selected Doctors</h2>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mb-10">
+            <div class="doctor-card selected rounded-lg overflow-hidden relative group">
+              <div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuC9llzHZ7bQo73HWbpW-k_D5tVY_fDU7GOzh8esds4dIukYq6s7zzBSDdqXj5n5boJCWx1hcAgvDX3LqvWguXCaJtO3rFT1NgYdRdTOkFp-mCa-abxCkvpqHZZAqrqYQpefsNukOxTW-ixZ61Zbg4l6Jg2i4pCe7nCGX5RYvSYUcYIg9C7s9DksVw31Pyq9mxNRfgvkMnPuJbMFYdkmHnoqDfmmpMlSqKVvreI2ml8_abA8EHL83aRDB5Uf62xanyBsuOkwLAHgK514')"></div>
+              <div class="p-4 flex-grow">
+                <h3 class="text-lg font-bold text-gray-900">Dr. Emily Carter</h3>
+                <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">A compassionate general practitioner with a focus on preventative care.</p>
+              </div>
+              <div class="p-4 flex justify-between items-center mt-auto">
+                <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor1-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-10">
+          <div class="border-b-2 border-gray-300 pb-4 mb-6">
+            <h2 class="text-xl font-bold text-gray-800">Available Doctors</h2>
+          </div>
+          <div class="relative overflow-y-auto max-h-[600px] subtle-scrollbar p-4 rounded-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-cover bg-center" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBebM5t3M4HfBhPK9HqLUshzX-VfQMQI-Ypz9I-AjpOfhxTP7tpNlG_H24pk_my42Wf8PlRo9zg3u5yKRw5nEnMdkbRsSb9P_Ro25AwxjQIF26vQ60Es6hZ7eDxM1ZqM97xeUy5eoBq1a7AQR0633bQz3YDECI2WGLBtxZMXqB8v2Wha4nhdEvT--popFETgtRhwvxn4WYA6BDLjMfOZp1cLDQF8h6oWnsvYmYrhDFv0MOwFp7IP0lYgYoVWDEkL-HHSlPMRugyJXGy')"></div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Ben Adams</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Specializes in sports medicine and patient rehabilitation.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor2-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Olivia Chen</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Expert in dermatology with a passion for skincare education.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor3-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Isaac Taylor</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Dedicated cardiologist known for his patient-first approach.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor4-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Sarah Miller</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Neurologist focused on complex neurological disorders.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor5-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. James Wilson</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">An oncologist with a commitment to personalized cancer care.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor6-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Chloe Davis</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Pediatrician dedicated to children's health and well-being.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor7-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+              <div class="doctor-card rounded-lg overflow-hidden relative group">
+                <button class="absolute top-2 left-2 text-gray-400 hover:text-gray-600 z-10"><span class="material-icons text-2xl">add</span></button>
+                <div class="h-40 bg-gray-200 flex items-center justify-center">
+                  <span class="material-icons text-4xl text-gray-400">add</span>
+                </div>
+                <div class="p-4 flex-grow">
+                  <h3 class="text-lg font-bold text-gray-900">Dr. Mason Rodriguez</h3>
+                  <p class="text-sm text-gray-600 mt-1 h-10 overflow-hidden">Psychiatrist specializing in adolescent mental health.</p>
+                </div>
+                <div class="p-4 flex justify-between items-center mt-auto">
+                  <a class="more-info-text text-xs text-gray-500 flex items-center" href="#doctor8-modal"> More info <span class="material-icons text-sm ml-1">arrow_forward_ios</span></a>
+                  <a class="calendar-icon" href="#booking"><span class="material-icons text-gray-600">calendar_today</span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <div class="modal-overlay fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center p-4" id="doctor1-modal">
+    <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-lg relative group-target:scale-100 scale-95 transition-transform duration-300">
+      <a class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" href="#">
+        <span class="material-icons">close</span>
+      </a>
+      <div class="flex flex-col items-center p-8">
+        <img alt="Dr. Emily Carter" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg -mt-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9llzHZ7bQo73HWbpW-k_D5tVY_fDU7GOzh8esds4dIukYq6s7zzBSDdqXj5n5boJCWx1hcAgvDX3LqvWguXCaJtO3rFT1NgYdRdTOkFp-mCa-abxCkvpqHZZAqrqYQpefsNukOxTW-ixZ61Zbg4l6Jg2i4pCe7nCGX5RYvSYUcYIg9C7s9DksVw31Pyq9mxNRfgvkMnPuJbMFYdkmHnoqDfmmpMlSqKVvreI2ml8_abA8EHL83aRDB5Uf62xanyBsuOkwLAHgK514"/>
+        <h2 class="text-2xl font-bold text-gray-900 mt-4">Dr. Emily Carter</h2>
+        <p class="text-gray-600 mt-2 text-center">A compassionate general practitioner with a focus on preventative care and patient education. She believes in building strong relationships with her patients.</p>
+        <div class="w-full mt-6 text-left">
+          <h4 class="font-semibold text-gray-800">Specialty:</h4>
+          <p class="text-gray-600">General Practice, Pediatrics</p>
+          <h4 class="font-semibold text-gray-800 mt-4">Qualifications:</h4>
+          <p class="text-gray-600">MBBS, MRCGP</p>
+          <h4 class="font-semibold text-gray-800 mt-4">Experience:</h4>
+          <p class="text-gray-600">10 years in pediatrics</p>
+        </div>
+        <a class="mt-8 bg-[var(--primary-button-bg)] text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity" href="#booking"> Book Appointment </a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay fixed inset-0 bg-black bg-opacity-70 backdrop-blur-sm flex items-center justify-center p-4" id="doctor2-modal">
+    <div class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-lg relative">
+      <a class="absolute top-4 right-4 text-gray-500 hover:text-gray-800" href="#">
+        <span class="material-icons">close</span>
+      </a>
+      <div class="flex flex-col items-center p-8">
+        <img alt="Dr. Ben Adams" class="w-32 h-32 rounded-full object-cover border-4 border-white shadow-lg -mt-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBebM5t3M4HfBhPK9HqLUshzX-VfQMQI-Ypz9I-AjpOfhxTP7tpNlG_H24pk_my42Wf8PlRo9zg3u5yKRw5nEnMdkbRsSb9P_Ro25AwxjQIF26vQ60Es6hZ7eDxM1ZqM97xeUy5eoBq1a7AQR0633bQz3YDECI2WGLBtxZMXqB8v2Wha4nhdEvT--popFETgtRhwvxn4WYA6BDLjMfOZp1cLDQF8h6oWnsvYmYrhDFv0MOwFp7IP0lYgYoVWDEkL-HHSlPMRugyJXGy"/>
+        <h2 class="text-2xl font-bold text-gray-900 mt-4">Dr. Ben Adams</h2>
+        I WANT THESE MADE NOW EXACTLY HOW THEY ARE NO CHNAGES <p class="text-gray-600 mt-2 text-center">Specializes in sports medicine and patient rehabilitation. He is dedicated to helping athletes and active individuals recover from injuries.</p>
+        <div class="w-full mt-6 text-left">
+          <h4 class="font-semibold text-gray-800">Specialty:</h4>
+          <p class="text-gray-600">Sports Medicine</p>
+          <h4 class="font-semibold text-gray-800 mt-4">Qualifications:</h4>
+          <p class="text-gray-600">MD, FACSM</p>
+          <h4 class="font-semibold text-gray-800 mt-4">Experience:</h4>
+          <p class="text-gray-600">8 years in sports medicine</p>
+        </div>
+        <a class="mt-8 bg-[var(--primary-button-bg)] text-white font-bold py-3 px-8 rounded-lg hover:opacity-90 transition-opacity" href="#booking"> Book Appointment </a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-overlay" id="doctor3-modal"></div>
+  <div class="modal-overlay" id="doctor4-modal"></div>
+  <div class="modal-overlay" id="doctor5-modal"></div>
+  <div class="modal-overlay" id="doctor6-modal"></div>
+  <div class="modal-overlay" id="doctor7-modal"></div>
+  <div class="modal-overlay" id="doctor8-modal"></div>
+</body>
+</html>

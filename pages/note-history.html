@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Medical Application UI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<style type="text/tailwindcss">
+:root {
+--sidebar-bg: #8AA89A;
+--main-bg: #EAF2E9;
+--right-panel-bg: #F9FAF9;
+--primary-button-bg: #58B7A7;
+--secondary-button-bg: #4A6A5C;
+--white: #FFFFFF;
+--black: #000000;
+--text-secondary-color: #333333;
+--calendar-symptom-note: #FFB347;
+--calendar-condition-occurred: #FF6F61;
+--calendar-condition-resolved: #4A6A5C;
+}
+body {
+font-family: 'Arial', 'Helvetica', sans-serif;
+background-color: var(--main-bg);
+}
+.sidebar {
+background-color: var(--sidebar-bg);
+color: var(--white);
+}
+.main-content {
+background-color: var(--main-bg);
+}
+.right-panel {
+background-color: var(--right-panel-bg);
+}
+.primary-button {
+background-color: var(--primary-button-bg);
+color: var(--white);
+}
+.secondary-button {
+background-color: var(--secondary-button-bg);
+color: var(--white);
+}
+.text-primary {
+color: var(--black);
+}
+.text-secondary {
+color: var(--text-secondary-color);
+}
+.title {
+font-size: 22px;
+font-weight: bold;
+}
+.heading {
+font-size: 18px;
+font-weight: bold;
+}
+.body-text {
+font-size: 14px;
+}
+.note-card {
+background-color: white;
+border-radius: 8px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+padding: 16px;
+margin-bottom: 16px;
+}
+.note-date {
+font-weight: bold;
+color: var(--text-secondary-color);
+margin-bottom: 8px;
+}
+.note-content {
+margin-bottom: 12px;
+}
+.note-tag {
+display: inline-block;
+padding: 4px 8px;
+border-radius: 4px;
+font-size: 12px;
+margin-right: 8px;
+margin-bottom: 8px;
+}
+.tag-symptom {
+background-color: var(--calendar-symptom-note);
+color: white;
+}
+.tag-condition {
+background-color: var(--calendar-condition-occurred);
+color: white;
+}
+.tag-resolved {
+background-color: var(--calendar-condition-resolved);
+color: white;
+}
+
+</style>
+</head>
+<body class="flex min-h-screen">
+<aside class="sidebar w-64 p-6 flex flex-col justify-between">
+<div>
+<div class="mb-12">
+<h1 class="text-2xl font-bold text-white">MyHealth</h1>
+</div>
+<nav class="space-y-4">
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">person_outline</span>
+<span class="body-text">Profile</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">calendar_today</span>
+<span class="body-text">Appointments</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">medical_services</span>
+<span class="body-text">Doctors</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">assignment</span>
+<span class="body-text">Symptom Notes</span>
+</a>
+<a class="flex items-center p-3 rounded-lg bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">history</span>
+<span class="body-text">Note History</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">chat</span>
+<span class="body-text">Chat Bot</span>
+</a>
+</nav>
+</div>
+<div class="mt-auto">
+<nav class="space-y-2">
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">settings</span>
+<span class="body-text">Settings</span>
+</a>
+<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<span class="material-icons mr-4">logout</span>
+<span class="body-text">Logout</span>
+</a>
+</nav>
+</div>
+</aside>
+<main class="main-content flex-1 p-8">
+<h2 class="title text-primary mb-6">NOTE HISTORY</h2>
+<div class="bg-white p-6 rounded-lg shadow-md">
+<div class="flex justify-between items-center mb-6">
+<div class="relative w-64">
+<input type="text" placeholder="Search notes..." class="w-full p-2 pl-10 rounded-lg border border-gray-300">
+<span class="material-icons absolute left-3 top-2 text-gray-400">search</span>
+</div>
+<div>
+<select class="p-2 rounded-lg border border-gray-300">
+<option>All Types</option>
+<option>Symptom Notes</option>
+<option>Conditions</option>
+<option>Resolved</option>
+</select>
+</div>
+</div>
+<div class="note-card">
+<div class="note-date">October 10, 2023</div>
+<div class="note-content">
+<p>Experienced severe headache for 3 hours. Started after lunch. Took ibuprofen which provided partial relief.</p>
+</div>
+<div>
+<span class="note-tag tag-symptom">Symptom</span>
+<span class="note-tag">Headache</span>
+<span class="note-tag">Pain Level: 8</span>
+</div>
+<div class="flex justify-end mt-4">
+<button class="text-gray-500 hover:text-gray-700 mr-4">
+<span class="material-icons">edit</span>
+</button>
+<button class="text-gray-500 hover:text-gray-700">
+<span class="material-icons">delete</span>
+</button>
+</div>
+</div>
+<div class="note-card">
+<div class="note-date">October 4, 2023</div>
+<div class="note-content">
+<p>Annual checkup with Dr. Carter. All vitals normal. Discussed nutrition and exercise plan.</p>
+</div>
+<div>
+<span class="note-tag tag-condition">Appointment</span>
+</div>
+<div class="flex justify-end mt-4">
+<button class="text-gray-500 hover:text-gray-700 mr-4">
+<span class="material-icons">edit</span>
+</button>
+<button class="text-gray-500 hover:text-gray-700">
+<span class="material-icons">delete</span>
+</button>
+</div>
+</div>
+<div class="note-card">
+<div class="note-date">September 15, 2023</div>
+<div class="note-content">
+<p>Allergy symptoms resolved after taking prescribed antihistamine for 5 days.</p>
+</div>
+<div>
+<span class="note-tag tag-resolved">Resolved</span>
+<span class="note-tag">Allergies</span>
+</div>
+<div class="flex justify-end mt-4">
+<button class="text-gray-500 hover:text-gray-700 mr-4">
+<span class="material-icons">edit</span>
+</button>
+<button class="text-gray-500 hover:text-gray-700">
+<span class="material-icons">delete</span>
+</button>
+</div>
+</div>
+<div class="note-card">
+<div class="note-date">September 10, 2023</div>
+<div class="note-content">
+<p>Started experiencing seasonal allergies. Symptoms include sneezing, runny nose, and itchy eyes.</p>
+</div>
+<div>
+<span class="note-tag tag-condition">Condition</span>
+<span class="note-tag">Allergies</span>
+<span class="note-tag">Pain Level: 4</span>
+</div>
+<div class="flex justify-end mt-4">
+<button class="text-gray-500 hover:text-gray-700 mr-4">
+<span class="material-icons">edit</span>
+</button>
+<button class="text-gray-500 hover:text-gray-700">
+<span class="material-icons">delete</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<aside class="right-panel w-80 p-6 flex flex-col space-y-8">
+<div class="flex-grow">
+<div class="space-y-4">
+<button class="primary-button w-full py-3 px-4 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-opacity">
+<span class="material-icons mr-2">add</span>
+ADD NEW NOTE
+</button>
+<button class="secondary-button w-full py-3 px-4 rounded-lg flex items-center justify-center body-text font-bold shadow hover:opacity-90 transition-opacity">
+<span class="material-icons mr-2">calendar_today</span>
+VIEW CALENDAR
+</button>
+</div>
+</aside>
+</body>
+</html>
