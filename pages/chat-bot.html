@@ -9,25 +9,25 @@
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <style type="text/tailwindcss">
 :root {
---sidebar-bg: #8AA89A;
---main-bg: #EAF2E9;
+--sidebar-bg: #252525;
+--main-bg: #1C1C1C;
 --right-panel-bg: #F9FAF9;
 --primary-button-bg: #58B7A7;
 --secondary-button-bg: #4A6A5C;
 --white: #FFFFFF;
 --black: #000000;
---text-secondary-color: #333333;
+--text-secondary-color: #E0E0E0;
 --chat-bot-bg: #D1E7E3;
 --user-message-bg: #58B7A7;
 --bot-message-bg: #E0E0E0;
---input-bg: var(--white);
---input-text: var(--black);
---button-hover: rgba(88, 183, 167, 0.1);
+--input-bg: #303134;
+--input-text: #E0E0E0;
+--button-hover: rgba(255, 255, 255, 0.1);
 }
 body {
 font-family: 'Arial', 'Helvetica', sans-serif;
 background-color: var(--main-bg);
-color: var(--black);
+color: var(--text-secondary-color);
 }
 .sidebar {
 background-color: var(--sidebar-bg);
@@ -107,22 +107,26 @@ border-bottom-left-radius: 4px;
 position: relative;
 display: flex;
 align-items: center;
-gap: 10px;
 margin-top: 20px;
-background-color: transparent;
+background-color: var(--input-bg);
 border-radius: 24px;
 padding: 0;
 border: none;
+height: 48px;
+width: 100%;
+box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 .chat-input input {
 flex: 1;
-padding: 12px 100px 12px 16px;
+padding: 0 96px 0 16px;
 border-radius: 24px;
-border: 1px solid #e0e0e0;
+border: none;
 outline: none;
-background-color: #f7f7f7;
-color: var(--black);
+background-color: transparent;
+color: var(--input-text);
 width: 100%;
+height: 100%;
+font-size: 16px;
 }
 
 .chat-input input:focus {
@@ -132,7 +136,7 @@ box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
 .chat-input button {
 background-color: transparent;
-color: var(--primary-button-bg);
+color: #8ab4f8;
 border: none;
 border-radius: 50%;
 width: 40px;
@@ -142,14 +146,14 @@ align-items: center;
 justify-content: center;
 cursor: pointer;
 position: absolute;
-right: 10px;
+right: 4px;
 top: 50%;
 transform: translateY(-50%);
 transition: color 0.2s ease;
 }
 
 .chat-input button:hover {
-color: var(--secondary-button-bg);
+color: #a1c4fb;
 background-color: transparent;
 }
 .suggestion-chips {
@@ -210,13 +214,13 @@ opacity: 0.7;
 .input-container {
 background-color: transparent;
 margin-top: 20px;
-border-top: 1px solid rgba(0, 0, 0, 0.07);
+border-top: none;
 padding-top: 15px;
 }
 
 .attachment-button {
 background-color: transparent;
-color: var(--primary-button-bg);
+color: #8ab4f8;
 border: none;
 border-radius: 50%;
 width: 40px;
@@ -226,31 +230,24 @@ align-items: center;
 justify-content: center;
 cursor: pointer;
 position: absolute;
-right: 50px;
+right: 48px;
 top: 50%;
 transform: translateY(-50%);
 transition: color 0.2s ease;
 }
 
 .attachment-button:hover {
-color: var(--secondary-button-bg);
+color: #a1c4fb;
 background-color: transparent;
 }
 
 .chat-input:focus-within {
 border-color: transparent;
-box-shadow: none;
+box-shadow: 0 1px 6px rgba(32, 33, 36, 0.28);
 }
 
 .chat-input::after {
-content: '';
-position: absolute;
-width: 1px;
-height: 20px;
-background-color: #e0e0e0;
-right: 45px;
-top: 50%;
-transform: translateY(-50%);
+display: none;
 }
 </style>
 </head>
@@ -301,7 +298,7 @@ transform: translateY(-50%);
 </div>
 </aside>
 <main class="main-content flex-1 p-8">
-<h2 class="title text-primary mb-6 flex justify-between items-center">
+<h2 class="title text-white mb-6 flex justify-between items-center">
 <span>HEALTH CHAT BOT</span>
 <div class="flex space-x-4">
 <button class="primary-button py-2 px-4 rounded-full flex items-center justify-center body-text font-bold hover:opacity-90 transition-opacity">
@@ -314,7 +311,7 @@ CONVERSATION HISTORY
 </button>
 </div>
 </h2>
-<div class="h-[calc(100vh-120px)] overflow-hidden">
+<div class="h-[calc(100vh-120px)] overflow-hidden bg-[#1C1C1C]">
 <div class="chat-container">
 <div class="chat-messages">
 <div class="message message-bot">
@@ -356,19 +353,13 @@ That sounds concerning. Have you noticed any triggers or patterns? For example, 
 </div>
 </div>
 <div class="input-container">
-<div class="suggestion-chips">
-<div class="suggestion-chip">Tell me about symptoms</div>
-<div class="suggestion-chip">Medication information</div>
-<div class="suggestion-chip">Find a doctor</div>
-<div class="suggestion-chip">Schedule appointment</div>
-</div>
 <div class="chat-input">
-<input type="text" placeholder="Type your message here...">
+<input type="text" placeholder="Ask anything">
 <button class="attachment-button">
-<span class="material-icons">attach_file</span>
+<span class="material-icons text-[20px]">mic</span>
 </button>
 <button>
-<span class="material-icons">send</span>
+<span class="material-icons text-[20px]">search</span>
 </button>
 </div>
 </div>
