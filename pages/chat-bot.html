@@ -112,9 +112,21 @@ background-color: var(--main-bg);
 border-radius: 24px;
 padding: 0;
 border: 1px solid #e0e0e0;
-height: 48px;
+height: 56px; /* Increased height */
 width: 100%;
+transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+
+.chat-input:hover {
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 1px rgba(88, 183, 167, 0.1);
+}
+
+.chat-input:focus-within {
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
+}
+
 .chat-input input {
 flex: 1;
 padding: 0 96px 0 48px;
@@ -133,29 +145,33 @@ outline: none;
 border-color: var(--primary-button-bg);
 box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
-.chat-input button {
+.chat-input button, .attachment-button, .mic-button {
 background-color: transparent;
 color: var(--primary-button-bg);
 border: none;
 border-radius: 50%;
-width: 40px;
-height: 40px;
+width: 32px;
+height: 32px;
 display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
 position: absolute;
-right: 4px;
+transition: all 0.2s ease;
+}
+
+.chat-input button {
+right: 12px;
 top: 50%;
 transform: translateY(-50%);
-transition: color 0.2s ease;
 }
 
 .chat-input button:hover, .attachment-button:hover, .mic-button:hover {
 color: var(--primary-button-bg);
-background-color: rgba(224, 224, 224, 0.3);
+background-color: rgba(88, 183, 167, 0.1);
 border-radius: 50%;
 }
+
 .suggestion-chips {
 display: flex;
 flex-wrap: wrap;
@@ -221,52 +237,17 @@ padding-top: 15px;
 .attachment-button {
 background-color: transparent;
 color: var(--primary-button-bg);
-border: none;
-border-radius: 50%;
-width: 40px;
-height: 40px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-position: absolute;
-left: 8px;
+left: 12px;
 top: 50%;
 transform: translateY(-50%);
-transition: color 0.2s ease;
-}
-
-.attachment-button:hover {
-color: var(--secondary-button-bg);
-background-color: transparent;
 }
 
 .mic-button {
 background-color: transparent;
 color: var(--primary-button-bg);
-border: none;
-border-radius: 50%;
-width: 40px;
-height: 40px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-position: absolute;
-right: 48px;
+right: 56px;
 top: 50%;
 transform: translateY(-50%);
-transition: color 0.2s ease;
-}
-
-.mic-button:hover {
-color: var(--secondary-button-bg);
-background-color: transparent;
-}
-
-.chat-input:focus-within {
-border-color: var(--primary-button-bg);
-box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
 </style>
 </head>
