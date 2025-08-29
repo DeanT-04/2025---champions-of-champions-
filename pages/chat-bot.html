@@ -116,7 +116,7 @@ border: none;
 }
 .chat-input input {
 flex: 1;
-padding: 12px 90px 12px 16px;
+padding: 12px 100px 12px 16px;
 border-radius: 24px;
 border: 1px solid #e0e0e0;
 outline: none;
@@ -141,10 +141,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
-margin-top: auto;
-margin-bottom: auto;
 position: absolute;
-right: 8px;
+right: 10px;
 top: 50%;
 transform: translateY(-50%);
 transition: color 0.2s ease;
@@ -227,10 +225,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
-margin-top: auto;
-margin-bottom: auto;
 position: absolute;
-right: 80px;
+right: 50px;
 top: 50%;
 transform: translateY(-50%);
 transition: color 0.2s ease;
@@ -244,6 +240,17 @@ background-color: transparent;
 .chat-input:focus-within {
 border-color: transparent;
 box-shadow: none;
+}
+
+.chat-input::after {
+content: '';
+position: absolute;
+width: 1px;
+height: 20px;
+background-color: #e0e0e0;
+right: 45px;
+top: 50%;
+transform: translateY(-50%);
 }
 </style>
 </head>
