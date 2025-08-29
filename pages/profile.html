@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+<head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Medical Application UI</title>
@@ -17,15 +18,19 @@
       --black: #000000;
       --text-secondary-color: #333333;
       --input-border-color: #D1D5DB;
-      --card-bg: rgba(255, 255, 255, 0.8);
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --hover-bg: rgba(88, 183, 167, 0.1);
     }
     body {
       font-family: 'Arial', 'Helvetica', sans-serif;
       background-color: var(--main-bg);
+      background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
+                        radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 15%);
     }
     .sidebar {
-      background-color: var(--sidebar-bg);
+      background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
       color: var(--white);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .main-content {
       background-color: var(--main-bg);
@@ -33,6 +38,13 @@
     .primary-button {
       background-color: var(--primary-button-bg);
       color: var(--white);
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
+    }
+    .primary-button:hover {
+      background-color: #4aa595;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(88, 183, 167, 0.3);
     }
     .text-primary {
       color: var(--black);
@@ -41,65 +53,210 @@
       color: var(--text-secondary-color);
     }
     .title {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
     .heading {
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 700;
     }
     .body-text {
       font-size: 14px;
+      letter-spacing: 0.2px;
     }
     .form-label {
-      @apply block text-sm font-medium text-secondary;
+      @apply block text-sm font-medium text-secondary mb-2;
     }
     .form-input {
-      @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+      @apply mt-1 block w-full rounded-lg border-gray-300 shadow-sm sm:text-sm transition-all;
       border-color: var(--input-border-color);
+      padding: 0.75rem 1rem;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .form-input:focus {
+      border-color: var(--primary-button-bg);
+      box-shadow: 0 0 0 3px rgba(88, 183, 167, 0.2);
+      outline: none;
+    }
+    .nav-item {
+      @apply flex items-center p-3 rounded-xl transition-all duration-200 mb-1;
+    }
+    .nav-item.active {
+      background-color: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+    .nav-item:not(.active):hover {
+      background-color: rgba(255, 255, 255, 0.15);
+      transform: translateX(4px);
+    }
+    .edit-button {
+      @apply flex items-center text-gray-600 hover:text-gray-900 transition-all duration-200;
+      background-color: var(--hover-bg);
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+    }
+    .edit-button:hover {
+      background-color: rgba(88, 183, 167, 0.2);
+    }
+    .profile-card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(10px);
+      border-radius: 16px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    .profile-picture-container {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid var(--primary-button-bg);
+      background-color: var(--sidebar-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    .profile-picture {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background-color: #e0e7e0;
+    }
+    .upload-button {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      background-color: var(--primary-button-bg);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+    .language-dropdown {
+      position: absolute;
+      width: 100%;
+      max-height: 200px;
+      overflow-y: auto;
+      background-color: white;
+      border: 1px solid var(--input-border-color);
+      border-radius: 0.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      z-index: 20;
+      display: none;
+    }
+    .language-dropdown.show {
+      display: block;
+    }
+    .dropdown-item {
+      padding: 0.75rem 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .dropdown-item:hover {
+      background-color: rgba(88, 183, 167, 0.1);
+    }
+    .tag-item {
+      display: inline-flex;
+      align-items: center;
+      background-color: rgba(88, 183, 167, 0.1);
+      border-radius: 0.25rem;
+      padding: 0.25rem 0.5rem;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .tag-remove {
+      margin-left: 0.25rem;
+      cursor: pointer;
+      color: var(--secondary-button-bg);
+    }
+    .language-container {
+      position: relative;
+    }
+    .language-tags {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 0.5rem;
+      min-height: 38px;
+      border: 1px solid var(--input-border-color);
+      border-radius: 0.5rem;
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .language-tags:focus-within {
+      border-color: var(--primary-button-bg);
+      box-shadow: 0 0 0 3px rgba(88, 183, 167, 0.2);
+      outline: none;
+    }
+    .language-search {
+      flex: 1;
+      border: none;
+      outline: none;
+      background: transparent;
+      font-size: 0.875rem;
+      min-width: 50px;
+      padding: 0.25rem;
+    }
+    /* Custom scrollbar styling */
+    .language-dropdown::-webkit-scrollbar {
+      width: 12px;
+    }
+    .language-dropdown::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    .language-dropdown::-webkit-scrollbar-thumb {
+      background-color: var(--sidebar-bg);
+      border-radius: 6px;
+      border: 3px solid white;
     }
   </style>
 </head>
 <body class="flex min-h-screen">
 <aside class="sidebar w-64 p-6 flex flex-col justify-between">
 <div>
-<div class="mb-12">
-<h1 class="text-2xl font-bold text-white">MyHealth</h1>
+<div class="mb-10 mt-4">
+<h1 class="text-2xl font-bold text-white tracking-tight">MyHealth</h1>
 </div>
-<nav class="space-y-4">
-<a class="flex items-center p-3 rounded-lg bg-white/20 transition-colors" href="#">
+<nav class="space-y-1">
+<a class="nav-item active" href="#">
 <span class="material-icons mr-4">person_outline</span>
 <span class="body-text">Profile</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">calendar_today</span>
 <span class="body-text">Appointments</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">medical_services</span>
 <span class="body-text">Doctors</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">assignment</span>
 <span class="body-text">Symptom Notes</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">history</span>
 <span class="body-text">Note History</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">chat</span>
 <span class="body-text">Chat Bot</span>
 </a>
 </nav>
 </div>
 <div class="mt-auto">
-<nav class="space-y-2">
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<nav class="space-y-1">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">settings</span>
 <span class="body-text">Settings</span>
 </a>
-<a class="flex items-center p-3 rounded-lg hover:bg-white/20 transition-colors" href="#">
+<a class="nav-item" href="#">
 <span class="material-icons mr-4">logout</span>
 <span class="body-text">Logout</span>
 </a>
@@ -107,12 +264,24 @@
 </div>
 </aside>
 <main class="main-content flex-1 p-8 flex items-center justify-center">
-<div class="bg-[var(--card-bg)] backdrop-blur-sm p-8 rounded-lg shadow-md w-full max-w-2xl">
-<div class="flex justify-between items-center mb-8">
-<h2 class="title text-primary">Profile Information</h2>
-<button class="flex items-center text-gray-500 opacity-60 hover:opacity-100 transition-opacity">
-<span class="material-icons mr-2">edit</span>
-<span class="body-text font-medium">Edit</span>
+<div class="profile-card p-8 w-full max-w-2xl">
+<!-- Profile Picture Section -->
+<div class="flex flex-col items-center mb-6">
+<div class="profile-picture-container relative">
+<div class="profile-picture flex items-center justify-center">
+<span class="material-icons text-white text-4xl">person</span>
+</div>
+<div class="upload-button">
+<span class="material-icons text-white text-sm">camera_alt</span>
+</div>
+</div>
+<h2 class="title text-primary text-center">Profile Information</h2>
+</div>
+
+<div class="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
+<button class="edit-button">
+<span class="material-icons mr-2 text-gray-600">edit</span>
+<span class="body-text font-semibold">Edit</span>
 </button>
 </div>
 <form action="#" method="POST">
@@ -130,8 +299,8 @@
 <input class="form-input" id="nhs-id" name="nhs-id" type="text" value="123 456 7890"/>
 </div>
 <div>
-<label class="form-label" for="age">Age</label>
-<input class="form-input" id="age" name="age" type="number" value="28"/>
+<label class="form-label" for="date-of-birth">Date of Birth</label>
+<input class="form-input" id="date-of-birth" name="date-of-birth" type="date" value="1997-01-15"/>
 </div>
 <div>
 <label class="form-label" for="phone-number">Phone number</label>
@@ -141,14 +310,177 @@
 <label class="form-label" for="post-code">Post code</label>
 <input class="form-input" id="post-code" name="post-code" type="text" value="SW1A 0AA"/>
 </div>
+<!-- New Language Fields with Dropdown -->
+<div class="language-container">
+<label class="form-label" for="primary-language-search">Primary Language</label>
+<div class="relative">
+<input class="form-input" id="primary-language" name="primary-language" type="text" value="English" placeholder="Search for a language..." readonly/>
+<input type="hidden" id="primary-language-value" name="primary-language-value" value="English"/>
+<span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" onclick="toggleDropdown('primary-dropdown')">arrow_drop_down</span>
+<div id="primary-dropdown" class="language-dropdown">
+<div class="p-2 border-b border-gray-100">
+<input type="text" id="primary-language-search" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Search language..." oninput="filterLanguages('primary-language-search', 'primary-dropdown')"/>
 </div>
+<div id="primary-language-options">
+<!-- Dropdown options will be populated by JavaScript -->
+</div>
+</div>
+</div>
+</div>
+
+<div class="language-container">
+<label class="form-label" for="secondary-language-search">Secondary Language</label>
+<div class="relative">
+<input class="form-input" id="secondary-language" name="secondary-language" type="text" value="Spanish" placeholder="Search for a language..." readonly/>
+<input type="hidden" id="secondary-language-value" name="secondary-language-value" value="Spanish"/>
+<span class="material-icons absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer" onclick="toggleDropdown('secondary-dropdown')">arrow_drop_down</span>
+<div id="secondary-dropdown" class="language-dropdown">
+<div class="p-2 border-b border-gray-100">
+<input type="text" id="secondary-language-search" class="w-full px-3 py-2 border border-gray-300 rounded-md" placeholder="Search language..." oninput="filterLanguages('secondary-language-search', 'secondary-dropdown')"/>
+</div>
+<div id="secondary-language-options">
+<!-- Dropdown options will be populated by JavaScript -->
+</div>
+</div>
+</div>
+</div>
+</div>
+
 <div class="mt-10 flex justify-center">
-<button class="primary-button w-full sm:w-auto py-3 px-12 rounded-lg body-text font-bold shadow hover:opacity-90 transition-opacity" type="submit">
+<button class="primary-button w-full sm:w-auto py-3.5 px-12 rounded-xl body-text font-bold shadow-lg hover:shadow-xl transition-all" type="submit">
             SAVE CHANGES
           </button>
 </div>
 </form>
 </div>
 </main>
+
+<script>
+// List of common languages
+const languages = [
+  'Afrikaans', 'Albanian', 'Arabic', 'Armenian', 'Azerbaijani',
+  'Basque', 'Belarusian', 'Bengali', 'Bosnian', 'Bulgarian',
+  'Catalan', 'Cebuano', 'Chinese', 'Croatian', 'Czech',
+  'Danish', 'Dutch', 'English', 'Esperanto', 'Estonian',
+  'Finnish', 'French', 'Galician', 'Georgian', 'German',
+  'Greek', 'Gujarati', 'Haitian Creole', 'Hausa', 'Hebrew',
+  'Hindi', 'Hmong', 'Hungarian', 'Icelandic', 'Igbo',
+  'Indonesian', 'Irish', 'Italian', 'Japanese', 'Javanese',
+  'Kannada', 'Kazakh', 'Khmer', 'Korean', 'Lao',
+  'Latin', 'Latvian', 'Lithuanian', 'Macedonian', 'Malay',
+  'Maltese', 'Maori', 'Marathi', 'Mongolian', 'Nepali',
+  'Norwegian', 'Persian', 'Polish', 'Portuguese', 'Punjabi',
+  'Romanian', 'Russian', 'Serbian', 'Slovak', 'Slovenian',
+  'Somali', 'Spanish', 'Swahili', 'Swedish', 'Tamil',
+  'Telugu', 'Thai', 'Turkish', 'Ukrainian', 'Urdu',
+  'Vietnamese', 'Welsh', 'Yiddish', 'Yoruba', 'Zulu'
+];
+
+// Initialize on document load
+document.addEventListener('DOMContentLoaded', function() {
+  // Populate dropdown options
+  populateDropdownOptions('primary-language-options', 'primary');
+  populateDropdownOptions('secondary-language-options', 'secondary');
+  
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', function(event) {
+    const primaryDropdown = document.getElementById('primary-dropdown');
+    const secondaryDropdown = document.getElementById('secondary-dropdown');
+    
+    if (!event.target.closest('.language-container')) {
+      primaryDropdown.classList.remove('show');
+      secondaryDropdown.classList.remove('show');
+    }
+  });
+});
+
+// Function to populate dropdown options
+function populateDropdownOptions(containerId, type) {
+  const container = document.getElementById(containerId);
+  container.innerHTML = '';
+  
+  languages.forEach(language => {
+    const option = document.createElement('div');
+    option.className = 'dropdown-item';
+    option.textContent = language;
+    option.onclick = function() {
+      if (type === 'primary') {
+        selectPrimaryLanguage(language);
+      } else {
+        selectSecondaryLanguage(language);
+      }
+    };
+    container.appendChild(option);
+  });
+}
+
+// Function to toggle dropdown visibility
+function toggleDropdown(dropdownId) {
+  const dropdown = document.getElementById(dropdownId);
+  dropdown.classList.toggle('show');
+  
+  if (dropdown.classList.contains('show')) {
+    if (dropdownId === 'primary-dropdown') {
+      document.getElementById('primary-language-search').focus();
+    } else if (dropdownId === 'secondary-dropdown') {
+      document.getElementById('secondary-language-search').focus();
+    }
+  }
+}
+
+// Function to filter languages based on search input
+function filterLanguages(inputId, dropdownId) {
+  const input = document.getElementById(inputId);
+  const filter = input.value.toLowerCase();
+  const dropdown = document.getElementById(dropdownId);
+  
+  // Show the dropdown when typing
+  dropdown.classList.add('show');
+  
+  // Get the options container based on dropdown type
+  let optionsContainer;
+  if (dropdownId === 'primary-dropdown') {
+    optionsContainer = document.getElementById('primary-language-options');
+  } else {
+    optionsContainer = document.getElementById('secondary-language-options');
+  }
+  
+  // Clear and repopulate the options
+  optionsContainer.innerHTML = '';
+  
+  const filteredLanguages = languages.filter(lang => 
+    lang.toLowerCase().includes(filter)
+  );
+  
+  // Create dropdown items for filtered languages
+  filteredLanguages.forEach(language => {
+    const option = document.createElement('div');
+    option.className = 'dropdown-item';
+    option.textContent = language;
+    option.onclick = function() {
+      if (dropdownId === 'primary-dropdown') {
+        selectPrimaryLanguage(language);
+      } else {
+        selectSecondaryLanguage(language);
+      }
+    };
+    optionsContainer.appendChild(option);
+  });
+}
+
+// Function to select primary language
+function selectPrimaryLanguage(language) {
+  document.getElementById('primary-language').value = language;
+  document.getElementById('primary-language-value').value = language;
+  document.getElementById('primary-dropdown').classList.remove('show');
+}
+
+// Function to select secondary language
+function selectSecondaryLanguage(language) {
+  document.getElementById('secondary-language').value = language;
+  document.getElementById('secondary-language-value').value = language;
+  document.getElementById('secondary-dropdown').classList.remove('show');
+}
+</script>
 
 </body></html>
