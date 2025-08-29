@@ -105,6 +105,7 @@ border-bottom-left-radius: 4px;
 }
 .chat-input {
 display: flex;
+align-items: center;
 gap: 10px;
 margin-top: 20px;
 background-color: #f7f7f7;
@@ -121,6 +122,12 @@ outline: none;
 background-color: transparent;
 color: var(--black);
 }
+
+.chat-input input:focus {
+outline: none;
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
+}
 .chat-input button {
 background-color: transparent;
 color: var(--primary-button-bg);
@@ -132,6 +139,8 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
+margin-top: auto;
+margin-bottom: auto;
 }
 
 .chat-input button:hover {
@@ -210,10 +219,17 @@ display: flex;
 align-items: center;
 justify-content: center;
 cursor: pointer;
+margin-top: auto;
+margin-bottom: auto;
 }
 
 .attachment-button:hover {
 background-color: rgba(88, 183, 167, 0.1);
+}
+
+.chat-input:focus-within {
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 2px rgba(88, 183, 167, 0.2);
 }
 </style>
 </head>
