@@ -23,6 +23,8 @@
 body {
 font-family: 'Arial', 'Helvetica', sans-serif;
 background-color: var(--main-bg);
+background-image: radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 20%),
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 15%);
 }
 .sidebar {
 background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
@@ -35,20 +37,26 @@ background-color: var(--main-bg);
 .primary-button {
 background-color: var(--primary-button-bg);
 color: var(--white);
-transition: all 0.2s ease;
+transition: all 0.3s ease;
+box-shadow: 0 4px 6px rgba(88, 183, 167, 0.2);
 }
+
 .primary-button:hover {
-transform: translateY(-1px);
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+background-color: #4aa595;
+transform: translateY(-2px);
+box-shadow: 0 6px 8px rgba(88, 183, 167, 0.3);
 }
 .secondary-button {
 background-color: var(--secondary-button-bg);
 color: var(--white);
-transition: all 0.2s ease;
+transition: all 0.3s ease;
+box-shadow: 0 4px 6px rgba(74, 106, 92, 0.2);
 }
+
 .secondary-button:hover {
-transform: translateY(-1px);
-box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+background-color: #3d5a4d;
+transform: translateY(-2px);
+box-shadow: 0 6px 8px rgba(74, 106, 92, 0.3);
 }
 .text-primary {
 color: var(--black);
@@ -76,8 +84,16 @@ font-size: 14px;
 @apply block text-sm font-medium text-secondary;
 }
 .form-input {
-@apply mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm;
+@apply mt-1 block w-full rounded-lg border-gray-300 shadow-sm sm:text-sm transition-all;
 border-color: var(--input-border-color);
+padding: 0.75rem 1rem;
+background-color: rgba(255, 255, 255, 0.8);
+}
+
+.form-input:focus {
+border-color: var(--primary-button-bg);
+box-shadow: 0 0 0 3px rgba(88, 183, 167, 0.2);
+outline: none;
 }
 .toggle-switch {
 position: relative;
@@ -121,15 +137,16 @@ transform: translateX(16px);
 
 /* Settings card styles */
 .settings-card {
-background-color: white;
-border-radius: 12px;
-box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+background-color: rgba(255, 255, 255, 0.85);
+border-radius: 16px;
+box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.5);
 }
 .settings-column {
-padding: 20px;
+padding: 24px;
 }
 .settings-column:first-child {
-border-right: 1px solid #eee;
+border-right: 1px solid rgba(238, 238, 238, 0.5);
 }
 .settings-group {
 margin-bottom: 24px;
@@ -149,14 +166,16 @@ background-color: #eee;
 margin: 8px 0;
 }
 .action-button {
-border-radius: 6px;
-padding: 6px 12px;
+border-radius: 8px;
+padding: 8px 14px;
 font-size: 13px;
-font-weight: 500;
+font-weight: 600;
 display: flex;
 align-items: center;
 justify-content: center;
+transition: all 0.3s ease;
 }
+
 .action-button .material-icons {
 font-size: 16px;
 margin-right: 4px;
@@ -227,17 +246,17 @@ margin-right: 4px;
 
 <div class="settings-card flex-1 overflow-hidden flex flex-col">
   <!-- Settings Header with Action Buttons -->
-  <div class="flex items-center justify-between p-4 border-b border-gray-200">
-    <div class="flex items-center space-x-2">
-      <span class="material-icons text-gray-500">settings</span>
-      <span class="subheading">Manage your preferences</span>
+  <div class="flex items-center justify-between p-5 border-b border-gray-200 bg-white/50">
+    <div class="flex items-center space-x-3">
+      <span class="material-icons text-gray-600">settings</span>
+      <span class="heading text-primary">Account Settings</span>
     </div>
-    <div class="flex space-x-2">
-      <button class="action-button border border-gray-300 hover:bg-gray-50">
+    <div class="flex space-x-3">
+      <button class="action-button border border-gray-300 hover:bg-gray-50 transition-all">
         <span class="material-icons">restore</span>
         Reset
       </button>
-      <button class="action-button primary-button">
+      <button class="action-button primary-button hover:shadow-lg">
         <span class="material-icons">save</span>
         Save
       </button>
@@ -278,7 +297,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Notification Frequency</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>Immediate</option>
             <option>Daily Digest</option>
             <option>Weekly</option>
@@ -317,7 +336,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Authentication Method</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>SMS</option>
             <option>Email</option>
             <option>Authenticator</option>
@@ -326,7 +345,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Session Timeout</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>15 minutes</option>
             <option>30 minutes</option>
             <option>1 hour</option>
@@ -413,7 +432,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Data Sharing Scope</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>Essential Only</option>
             <option>Standard</option>
             <option>Complete</option>
@@ -440,7 +459,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Text Size</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>Small</option>
             <option selected>Medium</option>
             <option>Large</option>
@@ -449,7 +468,7 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Language</span>
-          <select class="form-input w-28 text-xs py-1">
+          <select class="form-input w-28 text-xs py-1.5 px-2">
             <option>English</option>
             <option>Spanish</option>
             <option>French</option>
@@ -461,11 +480,13 @@ margin-right: 4px;
         
         <div class="settings-item">
           <span class="body-text">Color Scheme</span>
-          <div class="flex space-x-2">
-            <div class="w-4 h-4 rounded-full bg-[#58B7A7] cursor-pointer"></div>
-            <div class="w-4 h-4 rounded-full bg-blue-500 cursor-pointer"></div>
-            <div class="w-4 h-4 rounded-full bg-purple-500 cursor-pointer"></div>
-          </div>
+          <select class="form-input w-28 text-xs py-1.5 px-2">
+            <option>Standard</option>
+            <option>Deuteranopia</option>
+            <option>Protanopia</option>
+            <option>Tritanopia</option>
+            <option>High Contrast</option>
+          </select>
         </div>
       </div>
       
