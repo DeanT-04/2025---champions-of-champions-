@@ -1,7 +1,5 @@
 # MediBridge Service Gesundheitsanwendung
 
-![MediBridge Service Logo](assets/logo.png)
-
 *Eine moderne Gesundheitsanwendung, die Patienten mit intuitiven Werkzeugen zur Verwaltung ihrer Gesundheitsreise befähigt.*
 
 🌍 Verfügbar in:

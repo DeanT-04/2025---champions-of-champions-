@@ -1,7 +1,5 @@
 # MediBridge Service 医疗健康应用
 
-![MediBridge Service 标志](assets/logo.png)
-
 *一款现代化的医疗健康应用，旨在通过直观的工具赋能患者管理其健康之旅。*
 
 🌍 可用语言:

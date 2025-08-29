@@ -1,7 +1,5 @@
 # MediBridge Service ヘルスケアアプリケーション
 
-![MediBridge Service ロゴ](assets/logo.png)
-
 *患者が自分の健康管理をするための直感的なツールを提供する、モダンなヘルスケアアプリケーションです。*
 
 🌍 利用可能な言語:

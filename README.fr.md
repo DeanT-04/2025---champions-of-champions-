@@ -1,7 +1,5 @@
 # Application de Santé MediBridge Service
 
-![Logo MediBridge Service](assets/logo.png)
-
 *Une application de santé moderne conçue pour donner aux patients des outils intuitifs pour gérer leur parcours de santé.*
 
 🌍 Disponible en :
