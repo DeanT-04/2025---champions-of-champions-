@@ -94,25 +94,27 @@ padding: 12px 16px;
 border-radius: 18px;
 }
 .user-message {
-background-color: var(--user-message-bg);
-color: white;
+background-color: rgba(88, 183, 167, 0.2);
+color: var(--black);
 border-bottom-right-radius: 4px;
+border: 1px solid var(--primary-button-bg);
 }
 .bot-message {
-background-color: #f0f0f0;
+background-color: rgba(240, 240, 240, 0.3);
 color: var(--black);
 border-bottom-left-radius: 4px;
+border: 1px solid #e0e0e0;
 }
 .chat-input {
 position: relative;
 display: flex;
 align-items: center;
 margin-top: 20px;
-background-color: var(--main-bg);
+background-color: transparent;
 border-radius: 24px;
 padding: 0;
 border: 1px solid #e0e0e0;
-height: 56px; /* Increased height */
+height: 64px; /* Increased height */
 width: 100%;
 transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -192,16 +194,18 @@ transition: all 0.2s ease;
 background-color: rgba(88, 183, 167, 0.1);
 }
 .bot-avatar {
-width: 32px;
-height: 32px;
+width: 40px;
+height: 40px;
 margin-right: 12px;
 border-radius: 50%;
-background-color: var(--primary-button-bg);
+background-color: transparent;
+border: 1px solid var(--primary-button-bg);
 display: flex;
 align-items: center;
 justify-content: center;
-color: white;
-font-size: 16px;
+background-image: url('../assets/doctor-buddy.png');
+background-size: cover;
+background-position: center;
 }
 
 .message-with-avatar {
@@ -319,7 +323,7 @@ CONVERSATION HISTORY
 <span>Health Assistant</span>
 </div>
 <div class="message-with-avatar">
-<div class="bot-avatar">[Dr]</div>
+<div class="bot-avatar"></div>
 <div class="message-content bot-message">
 Hello! I'm your health assistant. How can I help you today?
 </div>
@@ -332,7 +336,7 @@ I've been having headaches lately.
 </div>
 <div class="message message-bot">
 <div class="message-with-avatar">
-<div class="bot-avatar">[Dr]</div>
+<div class="bot-avatar"></div>
 <div class="message-content bot-message">
 I'm sorry to hear that. How often are you experiencing these headaches?
 </div>
@@ -345,7 +349,7 @@ Almost daily for the past week.
 </div>
 <div class="message message-bot">
 <div class="message-with-avatar">
-<div class="bot-avatar">[Dr]</div>
+<div class="bot-avatar"></div>
 <div class="message-content bot-message">
 That sounds concerning. Have you noticed any triggers or patterns? For example, do they occur at a specific time of day or after certain activities?
 </div>
