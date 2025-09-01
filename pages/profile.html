@@ -28,9 +28,8 @@
                         radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 15%);
     }
     .sidebar {
-      background: linear-gradient(180deg, var(--sidebar-bg) 0%, #6a8a7a 100%);
+      background-color: var(--sidebar-bg);
       color: var(--white);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
     .main-content {
       background-color: var(--main-bg);
@@ -89,6 +88,9 @@
     }
     .nav-item:not(.active):hover {
       background-color: rgba(255, 255, 255, 0.15);
+    }
+    .logo {
+      filter: brightness(0) invert(1);
     }
     .edit-button {
       @apply flex items-center text-gray-600 hover:text-gray-900 transition-all duration-200;
@@ -219,11 +221,13 @@
 <body class="flex min-h-screen">
 <aside class="sidebar w-64 p-6 flex flex-col justify-between">
 <div>
-<div class="mb-10 mt-4">
-<h1 class="text-2xl font-bold text-white tracking-tight">MyHealth</h1>
+<div class="mb-12 mt-4 flex justify-center">
+  <a href="calendar.html">
+    <img src="../assets/remove_logo.png" alt="Logo" class="logo h-16 w-auto cursor-pointer">
+  </a>
 </div>
 <nav class="space-y-1">
-<a class="nav-item" href="profile.html">
+<a class="nav-item active" href="profile.html">
 <span class="material-icons mr-3 text-center">person_outline</span>
 <span class="body-text">Profile</span>
 </a>

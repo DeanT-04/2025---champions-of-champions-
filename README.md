@@ -69,6 +69,7 @@ xdg-open pages/profile.html
 ```
 
 Available pages:
+- Main Page: `pages/main.html` (central navigation hub)
 - Profile Page: `pages/profile.html`
 - Calendar Page: `pages/calendar.html`
 - Doctors Page: `pages/doctors.html`
@@ -95,9 +96,10 @@ Available pages:
 
 ```
 ├── assets/                 # Images and media files
-│   ├── logo.png           # Application logo
+│   ├── remove_logo.png    # Application logo (transparent background)
 │   └── doctor-buddy.png   # Chatbot avatar
 ├── pages/                 # Application pages
+│   ├── main.html          # Central navigation hub
 │   ├── profile.html       # User profile management
 │   ├── calendar.html      # Appointment scheduling
 │   ├── doctors.html       # Healthcare provider directory

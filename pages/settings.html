@@ -169,6 +169,9 @@ input:checked + .toggle-slider:before {
 .nav-item:not(.active):hover {
   background-color: rgba(255, 255, 255, 0.15);
 }
+.logo {
+  filter: brightness(0) invert(1);
+}
 .settings-card {
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
@@ -309,11 +312,11 @@ input:checked + .toggle-slider:before {
 }
 </style>
 </head>
-<body class="flex">
-<aside class="sidebar">
+<body class="flex min-h-screen">
+<aside class="sidebar w-64 p-6 flex flex-col justify-between">
 <div>
-<div class="mb-10 mt-4">
-<h1 class="text-2xl font-bold text-white tracking-tight">MyHealth</h1>
+<div class="mb-12 mt-4 flex justify-center">
+  <img src="../assets/remove_logo.png" alt="Logo" class="logo h-16 w-auto">
 </div>
 <nav class="space-y-1">
 <a class="nav-item" href="profile.html">

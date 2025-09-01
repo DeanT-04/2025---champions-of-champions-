@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyHealth - Medical Application</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style type="text/tailwindcss">
+        :root {
+            --sidebar-bg: #8AA89A;
+            --main-bg: #EAF2E9;
+            --right-panel-bg: #F9FAF9;
+            --primary-button-bg: #58B7A7;
+            --secondary-button-bg: #4A6A5C;
+            --white: #FFFFFF;
+            --black: #000000;
+            --text-secondary-color: #333333;
+        }
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--main-bg);
+            color: var(--black);
+        }
+        .sidebar {
+            background-color: var(--sidebar-bg);
+            color: var(--white);
+        }
+        .main-content {
+            background-color: var(--main-bg);
+        }
+        .right-panel {
+            background-color: var(--right-panel-bg);
+        }
+        .primary-button {
+            background-color: var(--primary-button-bg);
+            color: var(--white);
+        }
+        .secondary-button {
+            background-color: var(--secondary-button-bg);
+            color: var(--white);
+        }
+        .text-primary {
+            color: var(--black);
+        }
+        .text-secondary {
+            color: var(--text-secondary-color);
+        }
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .heading {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .body-text {
+            font-size: 14px;
+        }
+        .nav-item {
+            @apply flex items-center p-3 rounded-xl transition-all duration-200 mb-1;
+        }
+        .nav-item.active {
+            background-color: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .nav-item:not(.active):hover {
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+        .logo {
+            filter: brightness(0) invert(1);
+        }
+        .welcome-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 800px;
+            margin: 2rem auto;
+        }
+    </style>
+</head>
+<body class="flex min-h-screen">
+<aside class="sidebar w-64 p-6 flex flex-col justify-between">
+<div>
+<div class="mb-12 mt-4 flex justify-center">
+  <img src="../assets/remove_logo.png" alt="Logo" class="logo h-16 w-auto">
+</div>
+<nav class="space-y-1">
+                <a class="nav-item active" href="main.html">
+                    <span class="material-icons mr-3 text-center">home</span>
+                    <span class="body-text">Home</span>
+                </a>
+                <a class="nav-item" href="profile.html">
+                    <span class="material-icons mr-3 text-center">person_outline</span>
+                    <span class="body-text">Profile</span>
+                </a>
+                <a class="nav-item" href="calendar.html">
+                    <span class="material-icons mr-3 text-center">calendar_today</span>
+                    <span class="body-text">Appointments</span>
+                </a>
+                <a class="nav-item" href="doctors.html">
+                    <span class="material-icons mr-3 text-center">medical_services</span>
+                    <span class="body-text">Doctors</span>
+                </a>
+                <a class="nav-item" href="symptom-note.html">
+                    <span class="material-icons mr-3 text-center">assignment</span>
+                    <span class="body-text">Symptom Notes</span>
+                </a>
+                <a class="nav-item" href="note-history.html">
+                    <span class="material-icons mr-3 text-center">history</span>
+                    <span class="body-text">Note History</span>
+                </a>
+                <a class="nav-item" href="chat-bot.html">
+                    <span class="material-icons mr-3 text-center">chat</span>
+                    <span class="body-text">Chat Bot</span>
+                </a>
+            </nav>
+        </div>
+        <div class="mt-auto">
+            <nav class="space-y-1">
+                <a class="nav-item" href="settings.html">
+                    <span class="material-icons mr-3 text-center">settings</span>
+                    <span class="body-text">Settings</span>
+                </a>
+                <a class="nav-item" href="#">
+                    <span class="material-icons mr-3 text-center">logout</span>
+                    <span class="body-text">Logout</span>
+                </a>
+            </nav>
+        </div>
+    </aside>
+    
+    <main class="main-content flex-1 p-8">
+        <div class="welcome-card">
+            <h2 class="title text-primary mb-6 text-center">Welcome to MyHealth</h2>
+            <p class="body-text text-secondary mb-6 text-center">Your personal health management system</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                <a href="profile.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">person_outline</span>
+                    <h3 class="heading text-primary mb-2">Profile</h3>
+                    <p class="body-text text-secondary">Manage your personal information and medical history</p>
+                </a>
+                
+                <a href="calendar.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">calendar_today</span>
+                    <h3 class="heading text-primary mb-2">Appointments</h3>
+                    <p class="body-text text-secondary">View and manage your medical appointments</p>
+                </a>
+                
+                <a href="doctors.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">medical_services</span>
+                    <h3 class="heading text-primary mb-2">Doctors</h3>
+                    <p class="body-text text-secondary">Browse and connect with healthcare professionals</p>
+                </a>
+                
+                <a href="symptom-note.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">assignment</span>
+                    <h3 class="heading text-primary mb-2">Symptom Notes</h3>
+                    <p class="body-text text-secondary">Record and track your symptoms and health concerns</p>
+                </a>
+                
+                <a href="note-history.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">history</span>
+                    <h3 class="heading text-primary mb-2">Note History</h3>
+                    <p class="body-text text-secondary">Review your past symptom notes and health records</p>
+                </a>
+                
+                <a href="chat-bot.html" class="bg-white rounded-lg shadow p-6 flex flex-col items-center text-center hover:shadow-lg transition-shadow">
+                    <span class="material-icons text-4xl text-[var(--primary-button-bg)] mb-4">chat</span>
+                    <h3 class="heading text-primary mb-2">Chat Bot</h3>
+                    <p class="body-text text-secondary">Get health advice and support from our AI assistant</p>
+                </a>
+            </div>
+            
+            <div class="mt-10 text-center">
+                <a href="settings.html" class="inline-block primary-button py-3 px-6 rounded-lg body-text font-bold shadow hover:opacity-90 transition-opacity">
+                    <span class="material-icons mr-2">settings</span>
+                    Go to Settings
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
